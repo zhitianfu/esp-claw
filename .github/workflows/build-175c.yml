@@ -1,0 +1,33 @@
+name: Build ESP-Claw for Waveshare AMOLED 1.75C
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: espressif/idf:release-v5.5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install board manager helper
+        run: pip install esp-bmgr-assist
+
+      - name: Build edge_agent for waveshare_ESP32_S3_Touch_AMOLED_1_75C
+        run: |
+          cd application/edge_agent
+          idf.py bmgr -c ./boards -b waveshare_ESP32_S3_Touch_AMOLED_1_75C
+          idf.py build
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: esp-claw-175c
+          path: |
+            application/edge_agent/build/bootloader/*.bin
+            application/edge_agent/build/partition_table/*.bin
+            application/edge_agent/build/*.bin
+            application/edge_agent/build/flash_args

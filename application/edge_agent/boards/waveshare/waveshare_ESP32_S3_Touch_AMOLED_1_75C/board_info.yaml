@@ -1,0 +1,5 @@
+board: waveshare_ESP32_S3_Touch_AMOLED_1_75C
+chip: esp32s3
+version: 1.0.0
+description: "Waveshare ESP32-S3-Touch-AMOLED-1.75C development board"
+manufacturer: "Waveshare"
