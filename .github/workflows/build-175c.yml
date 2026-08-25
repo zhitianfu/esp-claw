@@ -14,10 +14,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install board manager helper
-        run: pip install esp-bmgr-assist
+        run: |
+          . $IDF_PATH/export.sh
+          pip install esp-bmgr-assist
 
       - name: Build edge_agent for waveshare_ESP32_S3_Touch_AMOLED_1_75C
         run: |
+          . $IDF_PATH/export.sh
           cd application/edge_agent
           idf.py bmgr -c ./boards -b waveshare_ESP32_S3_Touch_AMOLED_1_75C
           idf.py build
