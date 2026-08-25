@@ -13,6 +13,7 @@
 #include "driver/gpio.h"
 #include "esp_err.h"
 #include "esp_lcd_co5300.h"
+#include "esp_lcd_panel_ops.h"
 #include "esp_lcd_touch_cst9217.h"
 #include "esp_log.h"
 
